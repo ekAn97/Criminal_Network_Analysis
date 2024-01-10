@@ -13,6 +13,7 @@ Code developed for the analysis of criminal networks for Master Thesis and Submi
   ### Notes
   A large amount of the **n_removal.py** script (especially the disruption function) is heavily inspired by the code provided by the academic work cited below:
 
+'''bibtex
   @misc{cavallaro2020disrupting,
      title={Disrupting Resilient Criminal Networks through Data Analysis: The case of Sicilian Mafia},
      author={Lucia Cavallaro and Annamaria Ficara and Pasquale De Meo and Giacomo Fiumara and Salvatore Catanese and Ovidiu Bagdasar and Antonio Liotta},
