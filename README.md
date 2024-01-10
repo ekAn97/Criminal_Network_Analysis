@@ -6,12 +6,12 @@ Code developed for the analysis of criminal networks for Master Thesis and Submi
 - data: data used
 - results: generated results
 
-  ### Usage
-  TODO
+### Usage
+TODO
 
 
-  ### Notes
-  A large amount of the **n_removal.py** script (especially the disruption function) is heavily inspired by the code provided by the academic work of
+### Notes
+A large amount of the **n_removal.py** script (especially the disruption function) is heavily inspired by the code provided by the academic work of
   [Lucia Cavallaro and Annamaria Ficara and Pasquale De Meo and Giacomo Fiumara and Salvatore Catanese and Ovidiu Bagdasar and Antonio Liotta](https://doi.org/10.1371/journal.pone.0236476)[@cavallaro2020disrupting].
 
 '''bibtex
