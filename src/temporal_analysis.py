@@ -9,6 +9,7 @@ import matplotlib.pyplot as plt
 import seaborn as sb
 import scipy.stats as stat 
 from natsort import natsorted
+from sklearn.preprocessing import MinMaxScaler
 
 # Custom functions
 sys.path.append('/home/kostasan00/Desktop/criminal_nets/src/modules/')
@@ -60,8 +61,9 @@ else:
 # Additional metrics
 metrics.update({"Average Clustering": []})
 
-# Number of nodes
-nodes = []    
+# Number of nodes and edges
+nodes = []
+edges = []
 # Import data
 for file_name in natsorted(glob.glob(dir_path + "data/TempData/" +\
                                      'CAVIAR*.csv')):
@@ -85,11 +87,13 @@ for file_name in natsorted(glob.glob(dir_path + "data/TempData/" +\
  
     # Number of nodes
     N = len(G.nodes())
+    M = len(G.edges())
     nodes.append(N)
+    edges.append(M)
     
     # Compute centralities
     centralities_df = centralities(G, df)
-    centralities_df.to_csv("results/temporal/Phase-{}.csv".format(i), 
+    centralities_df.to_csv(dir_path + "results/temporal/Phase-{}.csv".format(i), 
                            index=False)
     
     # Compute global metrics
@@ -117,24 +121,37 @@ for file_name in natsorted(glob.glob(dir_path + "data/TempData/" +\
     
 # Storing Data Frame    
 metrics_df = pd.DataFrame(metrics, index=[_ for _ in range(1, 12)])
-metrics_df.to_csv("results/temporal/Metrics_Temp.csv", index=False)
+metrics_df.to_csv(dir_path + "results/temporal/Metrics_Temp.csv",
+                  index = False)
+
+# Save number of nodes and number of edges
+net_stats = pd.DataFrame()
+net_stats["Nodes"] = nodes
+net_stats["Edges"] = edges
+net_stats.to_csv(dir_path + "results/temporal/Nodes&Edges.csv", index = False)
+
+# MinMax scaling for number of nodes and edges
+scaler = MinMaxScaler()
+X = net_stats[["Nodes", "Edges"]]
+X_scaled = scaler.fit_transform(X)
 
 # Plotting network growth
 sb.set(style="whitegrid")
 plt.figure(figsize = (12, 6))
 
-sb.lineplot(x = [_ for _ in range(2, 24, 2)], y = nodes)
+sb.lineplot(x = [_ for _ in range(2, 24, 2)], y = X_scaled[:, 0],
+            label = "Nodes")
+sb.lineplot(x = [_ for _ in range(2, 24, 2)], y = X_scaled[:, 1],
+            label = "Edges")
 plt.xlabel("Stage of investigation (Months)",\
            fontdict = {"fontweight": "bold"})
-plt.ylabel("Number of nodes")
-plt.title("Network growth in time", fontdict = {"fontsize": 14,
-                                                  "fontweight": "bold",
-                                                  "fontstyle": "italic"})
+plt.ylabel("Normalized Values")
 plt.gca().xaxis.set_major_locator(plt.MaxNLocator(integer=True))
+plt.legend(loc = "upper left")
 
 # Storing plot as a jpg image
 plt.tight_layout()
-plt.savefig("results/temporal/NetworkGrowth.png", dpi=300)
+plt.savefig(dir_path + "results/temporal/NetworkGrowth.png", dpi=300)
 
 # Plotting global indicators
 sb.set(style="whitegrid")
@@ -149,9 +166,6 @@ for col in metrics_df.columns:
 plt.xlabel("Stage of investigation (Months)",\
            fontdict = {"fontweight": "bold"})
 plt.ylabel("Values")
-plt.title("Time Series Data", fontdict = {"fontsize": 14, 
-                                            "fontweight": "bold", 
-                                            "fontstyle": "italic"})
 plt.gca().xaxis.set_major_locator(plt.MaxNLocator(integer=True))
 
 
@@ -161,4 +175,4 @@ plt.legend(loc='upper center', bbox_to_anchor=(0.5, -0.2),
 
 # Storing plot as a jpg image
 plt.tight_layout()
-plt.savefig("results/temporal/TimeSeries_Metrics.png", dpi=300)
+plt.savefig(dir_path + "results/temporal/TimeSeries_Metrics.png", dpi=300)
