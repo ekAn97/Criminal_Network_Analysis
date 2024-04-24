@@ -17,13 +17,3 @@ TODO
 ### Notes
 A large amount of the **n_removal.py** script (especially the disruption function) is heavily inspired by the code provided by the academic work of
   ```Lucia Cavallaro and Annamaria Ficara and Pasquale De Meo and Giacomo Fiumara and Salvatore Catanese and Ovidiu Bagdasar and Antonio Liotta https://doi.org/10.1371/journal.pone.0236476.```
-
-'''bibtex
-  @misc{cavallaro2020disrupting,
-     title={Disrupting Resilient Criminal Networks through Data Analysis: The case of Sicilian Mafia},
-     author={Lucia Cavallaro and Annamaria Ficara and Pasquale De Meo and Giacomo Fiumara and Salvatore Catanese and Ovidiu Bagdasar and Antonio Liotta},
-     year={2020},
-     eprint={2003.05303},
-     archivePrefix={arXiv},
-     primaryClass={cs.SI}
- }
