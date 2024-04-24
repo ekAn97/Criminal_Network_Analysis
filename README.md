@@ -1,6 +1,9 @@
 # Criminal_Network_Analysis
 Code developed for the analysis of criminal networks for Master Thesis and Published Paper:
-Anastasiadis, Efstathios Konstantinos, and Ioannis Antoniou. 2024. "Directed Criminal Networks: Temporal Analysis and Disruption" Information 15, no. 2: 84. [https://doi.org/10.3390/info15020084]
+
+```Anastasiadis, Efstathios Konstantinos, and Ioannis Antoniou. 2024. "Directed Criminal Networks: Temporal Analysis and Disruption" Information 15, no. 2: 84. https://doi.org/10.3390/info15020084```
+
+LINK: [https://doi.org/10.3390/info15020084]
 
 ### Folders
 - src: Contains .py scripts, custom functions in a folder named "modules"
